@@ -10,6 +10,13 @@ version = 0.1.0
 
 requirements = python3,kivy==2.3.0,plyer,pyjnius
 
+# Pin the Android-target Python version explicitly. Without this,
+# python-for-android can resolve a newer Python than Kivy 2.3.0's
+# generated Cython C code supports (e.g. CPython 3.13/3.14 changed the
+# _PyLong_AsByteArray() C API signature, breaking Kivy-SDL2 compilation).
+# 3.11 is a known-good match for kivy==2.3.0 + cython==0.29.36.
+p4a.python_version = 3.11
+
 orientation = portrait
 fullscreen = 0
 
